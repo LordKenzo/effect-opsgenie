@@ -20,9 +20,13 @@ const makeProgram = () => {
 
 
 const main = async () => {
-  const [base, final] = await Effect.runPromise(makeProgram())
-  console.log(base)
-  console.log(final)
+  try {
+    const [base, final] = await Effect.runPromise(makeProgram())
+    console.log(`Base rotations: ${base}`)
+    console.log(`Final rotations: ${final}`)
+  } catch(error) {
+    console.error(`Failed to execute program: ${error}`)
+  }
 }
 
 console.log('Start')
