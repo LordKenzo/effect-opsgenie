@@ -9,8 +9,9 @@ export const getCurrentMonthTimeline = ():
         `https://api.opsgenie.com/v2/schedules/${process.env.OPSGENIE_SCHEDULE_ID}/timeline?expand=base&intervalUnit=months`,
         {
           headers: {
-            Authorization: `${process.env.OPSGENIE_API_KEY}`,
+            Authorization: `GenieKey ${process.env.OPSGENIE_API_KEY}`,
           },
+          signal: AbortSignal.timeout(30000), // 30 seconds timeout
         }
       )
       if (!response.ok) {
@@ -19,7 +20,7 @@ export const getCurrentMonthTimeline = ():
       const data = (await response.json())
       return data
     },
-    catch: (e: any) => new Error(`Opsgenie API error ${JSON.stringify(e)}`),
+    catch: (e: unknown) => new Error(`Opsgenie API error ${e instanceof Error ? e.message : JSON.stringify(e)}`),
   })
   return effect
 }
