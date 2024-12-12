@@ -1,13 +1,23 @@
 {
   "name": "effect-opsgenie",
   "version": "1.0.0",
-  "description": "",
+  "description": "A learning project",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "p001": "ts-node playground/play001.ts",
+    "p002": "ts-node playground/play002.ts",
+    "p003": "ts-node playground/play003.ts",
+    "p004": "ts-node playground/play004.ts",
+    "p005": "ts-node playground/play005.ts",
+    "p006": "ts-node playground/play006.ts",
+    "p007": "ts-node playground/play007.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "learning",
+    "effect"
+  ],
+  "author": "Lorenzo Franceschini <l.franceschini@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.10.2",
