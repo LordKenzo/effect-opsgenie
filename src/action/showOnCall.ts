@@ -1,12 +1,12 @@
-import { Effect, pipe, Schema } from "effect"
-import { TimelineResponseSchema, RotationSchema } from "../utils/decoder"
+import { Effect, pipe } from "effect"
+import { decodeTimelineResponseSchema, RotationSchema } from "../utils/decoder"
 import { getCurrentMonthTimeline } from "../api/timeline"
 import { ParseError } from "effect/ParseResult"
 
 export const getBaseRotations = (rotations: ReadonlyArray<RotationSchema>, email: string): ReadonlyArray<RotationSchema> => {
   return rotations.filter((rotation: RotationSchema) => {
     if (rotation.periods && rotation.periods.length > 0) {
-      const userMail = rotation.periods[0].recipient.name
+      const userMail = rotation.periods[0]?.recipient?.name
       return userMail === email
     }
     return false
@@ -19,13 +19,19 @@ export const getFinalRotations = (
   email: string
 ): [ReadonlyArray<RotationSchema>, number] => {
   let tokenSpesi = 0
-
-  const rotazioniUtentePassate = rotations.filter((rotation: RotationSchema) => {
+  const rotazioniUtentePassate: RotationSchema[] = []
+  rotations.forEach((rotation: RotationSchema) => {
 
     if (rotation.periods && rotation.periods.length > 0) {
-      const userMail = rotation.periods[0].recipient.name
-      if (!rotation.name.startsWith('BOT') && userMail === email) tokenSpesi++
-      return userMail === email && rotation.periods[0].type === 'historical'
+      const userMail = rotation.periods[0]?.recipient?.name
+      if (userMail === email) {
+        if (!rotation.name.startsWith('BOT')) {
+          tokenSpesi++
+        }
+      }
+      if (rotation.periods[0].type === 'historical') {
+        rotazioniUtentePassate.push(rotation)
+      }
     }
     return false
   })
@@ -34,12 +40,12 @@ export const getFinalRotations = (
 
 }
 
-const decodeResponse = Schema.decode(TimelineResponseSchema)
+
 
 const makeProgram = (email: string): Effect.Effect<(readonly RotationSchema[] | [readonly RotationSchema[], number])[], ParseError | Error, never> => {
   const program = pipe(
     getCurrentMonthTimeline(),
-    Effect.flatMap(decodeResponse),
+    Effect.flatMap(decodeTimelineResponseSchema),
     Effect.andThen(r => {
       const [base, final] = [r.data.baseTimeline.rotations, r.data.finalTimeline.rotations]
       return [getBaseRotations(base, email), getFinalRotations(final, email)]

@@ -1,43 +1,45 @@
 import { Schema } from "effect"
 
-const RecipientSchema = Schema.Struct({
+const RecipientSchemaStruct = Schema.Struct({
   id: Schema.String,
   type: Schema.String,
   name: Schema.String
 })
 
-const PeriodsSchema = Schema.Struct({
+const PeriodsSchemaStruct = Schema.Struct({
   startDate: Schema.String,
   endDate: Schema.String,
   type: Schema.String,
-  recipient: RecipientSchema,
-  flattenedRecipients: Schema.optional(Schema.Array(RecipientSchema))
+  recipient: RecipientSchemaStruct,
+  flattenedRecipients: Schema.optional(Schema.Array(RecipientSchemaStruct))
 });
 
-export const RotationSchema = Schema.Struct({
+const RotationSchemaStruct = Schema.Struct({
   id: Schema.String,
   name: Schema.String,
   order: Schema.Number,
-  periods: Schema.Array(PeriodsSchema),
+  periods: Schema.Array(PeriodsSchemaStruct),
 })
-export interface RotationSchema extends Schema.Schema.Type<typeof RotationSchema> {}
+export interface RotationSchema extends Schema.Schema.Type<typeof RotationSchemaStruct> {}
 
-const TimelineSchema = Schema.Struct({
+const TimelineSchemaStruct = Schema.Struct({
   _parent: Schema.Any,
   startDate: Schema.String,
   endDate: Schema.String,
   finalTimeline: Schema.Struct({
-    rotations: Schema.Array(RotationSchema),
+    rotations: Schema.Array(RotationSchemaStruct),
   }),
   baseTimeline: Schema.Struct({
-    rotations: Schema.Array(RotationSchema),
+    rotations: Schema.Array(RotationSchemaStruct),
   }),
 })
 
-export const TimelineResponseSchema = Schema.Struct({
-  data: TimelineSchema,
+const TimelineResponseSchemaStruct = Schema.Struct({
+  data: TimelineSchemaStruct,
   expandable: Schema.Array(Schema.String),
   took: Schema.Number,
   requestId: Schema.String,
 })
-export type TimelineResponseSchema = Schema.Schema.Type<typeof TimelineResponseSchema>
+export interface TimelineResponseSchema extends Schema.Schema.Type<typeof TimelineResponseSchemaStruct> {}
+
+export const decodeTimelineResponseSchema = Schema.decode(TimelineResponseSchemaStruct)
