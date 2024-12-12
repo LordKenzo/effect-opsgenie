@@ -14,7 +14,7 @@ export const getCurrentMonthTimeline = ():
         }
       )
       if (!response.ok) {
-        return new Error(`Opsgenie API error: ${response.status} ${response.statusText}`)
+        throw new Error(`Opsgenie API error: ${response.status} ${response.statusText}`)
       }
       const data = (await response.json())
       return data
