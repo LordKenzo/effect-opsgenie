@@ -6,9 +6,9 @@ import dotenv from 'dotenv'
 dotenv.config()
 const decodeResponse = Schema.decode(TimelineResponseSchema)
 
-const makeProgram = async () => {
+const makeProgram = () => {
   const program = pipe(
-    await getCurrentMonthTimeline(),
+    getCurrentMonthTimeline(),
     Effect.flatMap(decodeResponse),
     Effect.andThen(r => {
       return [r.data.finalTimeline.rotations, r.data.baseTimeline.rotations]
@@ -20,7 +20,7 @@ const makeProgram = async () => {
 
 
 const main = async () => {
-  const [base, final] = await Effect.runPromise(await makeProgram())
+  const [base, final] = await Effect.runPromise(makeProgram())
   console.log(base)
   console.log(final)
 }
