@@ -14,12 +14,13 @@ const PeriodsSchema = Schema.Struct({
   flattenedRecipients: Schema.optional(Schema.Array(RecipientSchema))
 });
 
-const RotationSchema = Schema.Struct({
+export const RotationSchema = Schema.Struct({
   id: Schema.String,
   name: Schema.String,
   order: Schema.Number,
   periods: Schema.Array(PeriodsSchema),
 })
+export interface RotationSchema extends Schema.Schema.Type<typeof RotationSchema> {}
 
 const TimelineSchema = Schema.Struct({
   _parent: Schema.Any,
