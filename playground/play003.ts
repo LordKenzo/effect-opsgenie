@@ -24,10 +24,6 @@ const two = Effect.tryPromise({
   catch: () => new Error("Errore JSON Parse"),
 });
 
-Effect.runPromise(two)
-  .then((value) => {
-    console.log(value);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+Effect.runPromise(two).then((value) => {
+  console.log(value);
+});
