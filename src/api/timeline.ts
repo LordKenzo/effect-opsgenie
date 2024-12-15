@@ -1,5 +1,5 @@
 import { Effect } from 'effect';
-import { TimelineResponseSchema } from './decoder'
+import { TimelineResponseSchema } from '../utils/decoder'
 
 export const getCurrentMonthTimeline = ():
   Effect.Effect<TimelineResponseSchema, Error, never> => {
