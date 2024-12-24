@@ -16,7 +16,10 @@
     "p009": "ts-node playground/play009.ts",
     "p010": "ts-node playground/play010.ts",
     "p011": "ts-node playground/play011.ts",
-    "p012": "ts-node playground/play012.ts"
+    "p012": "ts-node playground/play012.ts",
+    "p013": "ts-node playground/play013.ts",
+    "p014": "ts-node playground/play014.ts",
+    "p015": "ts-node playground/play015.ts"
   },
   "keywords": [
     "learning",

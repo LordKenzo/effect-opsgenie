@@ -70,7 +70,7 @@ const validateUsersSchema = (users: Array<User>) =>
   );
 // );
 
-const main = pipe(
+const program = pipe(
   fetchRequest,
   Effect.flatMap(jsonResponse),
   Effect.flatMap(validateUsersSchema),
@@ -81,4 +81,4 @@ const main = pipe(
   })
 );
 
-Effect.runPromise(main).then(console.log);
+Effect.runPromise(program).then(console.log);
