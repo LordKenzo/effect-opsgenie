@@ -1,32 +1,15 @@
-import { Effect, pipe, Schema } from "effect"
-import { TimelineResponseSchema } from './decoder'
-import { getCurrentMonthTimeline } from './timeline'
+import { showOnCallAction } from "./action/showOnCall"
 import dotenv from 'dotenv'
 
 dotenv.config()
-const decodeResponse = Schema.decode(TimelineResponseSchema)
-
-const makeProgram = () => {
-  const program = pipe(
-    getCurrentMonthTimeline(),
-    Effect.flatMap(decodeResponse),
-    Effect.andThen(r => {
-      return [r.data.finalTimeline.rotations, r.data.baseTimeline.rotations]
-    })
-  )
-
-  return program;
-}
-
 
 const main = async () => {
-  try {
-    const [base, final] = await Effect.runPromise(makeProgram())
-    console.log(`Base rotations: ${base}`)
-    console.log(`Final rotations: ${final}`)
-  } catch(error) {
-    console.error(`Failed to execute program: ${error}`)
+  const email = process.env.EMAIL_OPSGENIE
+  if (!email) {
+    throw new Error("EMAIL_OPSGENIE environment variable is not defined")
   }
+
+ await showOnCallAction(`${process.env.EMAIL_OPSGENIE}`)
 }
 
 console.log('Start')
