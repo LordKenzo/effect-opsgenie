@@ -19,7 +19,14 @@
     "p012": "ts-node playground/play012.ts",
     "p013": "ts-node playground/play013.ts",
     "p014": "ts-node playground/play014.ts",
-    "p015": "ts-node playground/play015.ts"
+    "p015": "ts-node playground/play015.ts",
+    "p016": "ts-node playground/play016.ts",
+    "p017": "ts-node playground/play017.ts",
+    "p018": "ts-node playground/play018.ts",
+    "p019": "ts-node playground/play019.ts",
+    "p020": "ts-node playground/play020.ts",
+    "p021": "ts-node playground/play021.ts",
+    "p022": "ts-node playground/play022.ts"
   },
   "keywords": [
     "learning",
