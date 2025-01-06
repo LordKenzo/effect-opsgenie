@@ -26,7 +26,10 @@
     "p019": "ts-node playground/play019.ts",
     "p020": "ts-node playground/play020.ts",
     "p021": "ts-node playground/play021.ts",
-    "p022": "ts-node playground/play022.ts"
+    "p022": "ts-node playground/play022.ts",
+    "p023": "ts-node playground/play023.ts",
+    "p024": "ts-node playground/play024.ts",
+    "p025": "ts-node playground/play025.ts"
   },
   "keywords": [
     "learning",
@@ -35,12 +38,16 @@
   "author": "Lorenzo Franceschini <l.franceschini@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
+    "@types/pg": "^8.11.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
-    "effect": "^3.11.5"
+    "effect": "^3.11.5",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
   }
 }
