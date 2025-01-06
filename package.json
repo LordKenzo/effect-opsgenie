@@ -1,21 +1,53 @@
 {
   "name": "effect-opsgenie",
   "version": "1.0.0",
-  "description": "",
+  "description": "A learning project",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "p001": "ts-node playground/play001.ts",
+    "p002": "ts-node playground/play002.ts",
+    "p003": "ts-node playground/play003.ts",
+    "p004": "ts-node playground/play004.ts",
+    "p005": "ts-node playground/play005.ts",
+    "p006": "ts-node playground/play006.ts",
+    "p007": "ts-node playground/play007.ts",
+    "p008": "ts-node playground/play008.ts",
+    "p009": "ts-node playground/play009.ts",
+    "p010": "ts-node playground/play010.ts",
+    "p011": "ts-node playground/play011.ts",
+    "p012": "ts-node playground/play012.ts",
+    "p013": "ts-node playground/play013.ts",
+    "p014": "ts-node playground/play014.ts",
+    "p015": "ts-node playground/play015.ts",
+    "p016": "ts-node playground/play016.ts",
+    "p017": "ts-node playground/play017.ts",
+    "p018": "ts-node playground/play018.ts",
+    "p019": "ts-node playground/play019.ts",
+    "p020": "ts-node playground/play020.ts",
+    "p021": "ts-node playground/play021.ts",
+    "p022": "ts-node playground/play022.ts",
+    "p023": "ts-node playground/play023.ts",
+    "p024": "ts-node playground/play024.ts",
+    "p025": "ts-node playground/play025.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "learning",
+    "effect"
+  ],
+  "author": "Lorenzo Franceschini <l.franceschini@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
+    "@types/pg": "^8.11.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
-    "effect": "^3.11.5"
+    "effect": "^3.11.5",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
   }
 }
